@@ -21,15 +21,16 @@ namespace Strawhat.net
         BindingSource pSource = new BindingSource();
         BindingList<string> sent = new BindingList<string>();
         BindingSource sSource = new BindingSource();
+        PlotWindow plotWindow = new PlotWindow();
 
-        int n = 0;
+        int line = 0;
 
         public MonitorWindow()
         {
             InitializeComponent();
             
             //Initiate baud rate list
-            List<int> baudRate = new List<int>(){ 9600, 19200, 115200, 384000 };
+            List<int> baudRate = new List<int>(){ 9600, 19200, 115200, 384000, 250000, 1000000, 2000000 };
             baudBox.DataSource = baudRate;
             baudBox.SelectedIndex = 0;
             
@@ -135,6 +136,7 @@ namespace Strawhat.net
 
         private void DataReceivedHandler(Object sender, SerialDataReceivedEventArgs e)
         {
+            line = receiveText.Lines.Length;
             SerialPort sp = (SerialPort)sender;
             try
             {
@@ -150,6 +152,7 @@ namespace Strawhat.net
                             receiveText.ScrollToCaret();
                         }));
                     }
+                    
                 }
             }
             catch (System.InvalidOperationException err)
@@ -175,6 +178,16 @@ namespace Strawhat.net
             {
                 Console.WriteLine("Failed to send");
             }
+        }
+
+        private void plotToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            plotWindow.Show(this);
+        }
+
+        private void clearToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            receiveText.Text = "";
         }
     }
 }
