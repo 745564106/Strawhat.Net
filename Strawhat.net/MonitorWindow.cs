@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Management;
+using System.IO;
 
 namespace Strawhat.net
 {
@@ -21,14 +22,18 @@ namespace Strawhat.net
         BindingSource pSource = new BindingSource();
         BindingList<string> sent = new BindingList<string>();
         BindingSource sSource = new BindingSource();
-        PlotWindow plotWindow = new PlotWindow();
 
-        int line = 0;
+        int count;
 
         public MonitorWindow()
         {
             InitializeComponent();
-            
+            chartBox.Enabled = false;
+            chartBox.Visible = false;
+            saveGraphToolStripMenuItem.Enabled = false;
+            saveGraphToolStripMenuItem.Visible = false;
+            count = 0;
+
             //Initiate baud rate list
             List<int> baudRate = new List<int>(){ 9600, 19200, 115200, 384000, 250000, 1000000, 2000000 };
             baudBox.DataSource = baudRate;
@@ -65,6 +70,7 @@ namespace Strawhat.net
             {
                 Console.WriteLine("Watcher failed to start");
             }
+            
         }
 
         private void ports_refresh()
@@ -136,14 +142,19 @@ namespace Strawhat.net
 
         private void DataReceivedHandler(Object sender, SerialDataReceivedEventArgs e)
         {
-            line = receiveText.Lines.Length;
             SerialPort sp = (SerialPort)sender;
             try
             {
                 String data;
                 while (serialPort.BytesToRead > 0)
                 {
-                    data = sp.ReadExisting();
+                    if (chartBox.Enabled)
+                    {
+                        data = sp.ReadLine();
+                        string[] x = data.Split('\n');
+                        chartBox.Series["Series1"].Points.AddXY(count++, x[0]);
+                    } else data = sp.ReadExisting();
+
                     if (receiveText.InvokeRequired)
                     {
                         receiveText.BeginInvoke(new MethodInvoker(delegate
@@ -180,14 +191,74 @@ namespace Strawhat.net
             }
         }
 
-        private void plotToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            plotWindow.Show(this);
-        }
-
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
         {
             receiveText.Text = "";
+        }
+
+        private void exportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            saveDialog.Filter = "Text Files | *.txt";
+            saveDialog.Title = "Save Serial Monitor Messages";
+            saveDialog.ShowDialog(this);
+            try
+            {
+                File.WriteAllText(saveDialog.FileName, receiveText.Text);
+            }
+            catch
+            {
+                Console.WriteLine("Failed to save");
+            }
+                
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutBox aboutBox = new AboutBox();
+            aboutBox.ShowDialog();
+        }
+
+        private void plotToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!chartBox.Enabled)
+            {
+                receiveText.Height = 50;
+                chartBox.Visible = true;
+                chartBox.Enabled = true;
+                chartBox.Height = 300;
+                chartBox.Series.Add("Series1");
+                chartBox.Series["Series1"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+                chartBox.Series["Series1"].BorderWidth = 3;
+                plotToolStripMenuItem.Checked = true;
+                saveGraphToolStripMenuItem.Enabled = true;
+                saveGraphToolStripMenuItem.Visible = true;
+            }
+            else if (chartBox.Enabled)
+            {
+                chartBox.Series.Clear();
+                receiveText.Height = 215;
+                chartBox.Visible = false;
+                chartBox.Enabled = false;
+                plotToolStripMenuItem.Checked = false;
+                saveGraphToolStripMenuItem.Enabled = false;
+                saveGraphToolStripMenuItem.Visible = false;
+            }
+        }
+
+        private void saveGraphToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            saveDialog.Filter = "Jpeg Images | *.jpeg";
+            saveDialog.ShowDialog(this);
+            try
+            {
+                chartBox.SaveImage(saveDialog.FileName, System.Windows.Forms.DataVisualization.Charting.ChartImageFormat.Jpeg);
+            }
+            catch
+            {
+
+            }
         }
     }
 }

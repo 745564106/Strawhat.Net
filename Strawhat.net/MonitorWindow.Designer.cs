@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.menu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -36,7 +37,7 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.terminalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.plotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.portBox = new System.Windows.Forms.ComboBox();
@@ -45,57 +46,66 @@
             this.sendBox = new System.Windows.Forms.ComboBox();
             this.sendButton = new System.Windows.Forms.Button();
             this.receiveText = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.chartBox = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.plotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveGraphToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableLayoutPanel.SuspendLayout();
             this.menu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartBox)).BeginInit();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // tableLayoutPanel
             // 
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.menu, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.portBox, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.baudBox, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.connectButton, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.sendBox, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.sendButton, 3, 3);
-            this.tableLayoutPanel1.Controls.Add(this.receiveText, 0, 2);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(409, 311);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.tableLayoutPanel.AutoSize = true;
+            this.tableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel.ColumnCount = 4;
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel.Controls.Add(this.menu, 0, 0);
+            this.tableLayoutPanel.Controls.Add(this.portBox, 0, 1);
+            this.tableLayoutPanel.Controls.Add(this.baudBox, 1, 1);
+            this.tableLayoutPanel.Controls.Add(this.connectButton, 3, 1);
+            this.tableLayoutPanel.Controls.Add(this.sendBox, 0, 4);
+            this.tableLayoutPanel.Controls.Add(this.sendButton, 3, 4);
+            this.tableLayoutPanel.Controls.Add(this.receiveText, 0, 3);
+            this.tableLayoutPanel.Controls.Add(this.chartBox, 0, 2);
+            this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel.Name = "tableLayoutPanel";
+            this.tableLayoutPanel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
+            this.tableLayoutPanel.RowCount = 5;
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel.Size = new System.Drawing.Size(385, 318);
+            this.tableLayoutPanel.TabIndex = 0;
             // 
             // menu
             // 
             this.menu.BackColor = System.Drawing.SystemColors.Control;
             this.menu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.tableLayoutPanel1.SetColumnSpan(this.menu, 4);
+            this.tableLayoutPanel.SetColumnSpan(this.menu, 4);
             this.menu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.terminalToolStripMenuItem,
-            this.plotToolStripMenuItem,
+            this.toolsToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
             this.menu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.menu.Size = new System.Drawing.Size(409, 23);
+            this.menu.Size = new System.Drawing.Size(385, 23);
             this.menu.TabIndex = 0;
             // 
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exportToolStripMenuItem,
+            this.saveGraphToolStripMenuItem,
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -105,8 +115,9 @@
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.exportToolStripMenuItem.Text = "Export";
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exportToolStripMenuItem.Text = "Export Text";
+            this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -136,12 +147,13 @@
             this.clearToolStripMenuItem.Text = "Clear";
             this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
             // 
-            // plotToolStripMenuItem
+            // toolsToolStripMenuItem
             // 
-            this.plotToolStripMenuItem.Name = "plotToolStripMenuItem";
-            this.plotToolStripMenuItem.Size = new System.Drawing.Size(40, 19);
-            this.plotToolStripMenuItem.Text = "Plot";
-            this.plotToolStripMenuItem.Click += new System.EventHandler(this.plotToolStripMenuItem_Click);
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.plotToolStripMenuItem});
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 19);
+            this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // helpToolStripMenuItem
             // 
@@ -156,6 +168,7 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // portBox
             // 
@@ -182,7 +195,7 @@
             // connectButton
             // 
             this.connectButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.connectButton.Location = new System.Drawing.Point(314, 26);
+            this.connectButton.Location = new System.Drawing.Point(290, 26);
             this.connectButton.Margin = new System.Windows.Forms.Padding(5, 3, 10, 3);
             this.connectButton.Name = "connectButton";
             this.connectButton.Size = new System.Drawing.Size(85, 24);
@@ -193,19 +206,19 @@
             // 
             // sendBox
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.sendBox, 3);
+            this.tableLayoutPanel.SetColumnSpan(this.sendBox, 3);
             this.sendBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sendBox.FormattingEnabled = true;
-            this.sendBox.Location = new System.Drawing.Point(10, 281);
+            this.sendBox.Location = new System.Drawing.Point(10, 288);
             this.sendBox.Margin = new System.Windows.Forms.Padding(10, 5, 5, 3);
             this.sendBox.Name = "sendBox";
-            this.sendBox.Size = new System.Drawing.Size(294, 21);
+            this.sendBox.Size = new System.Drawing.Size(270, 21);
             this.sendBox.TabIndex = 4;
             // 
             // sendButton
             // 
             this.sendButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sendButton.Location = new System.Drawing.Point(314, 279);
+            this.sendButton.Location = new System.Drawing.Point(290, 286);
             this.sendButton.Margin = new System.Windows.Forms.Padding(5, 3, 10, 3);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(85, 24);
@@ -217,43 +230,73 @@
             // receiveText
             // 
             this.receiveText.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.tableLayoutPanel1.SetColumnSpan(this.receiveText, 4);
+            this.tableLayoutPanel.SetColumnSpan(this.receiveText, 4);
             this.receiveText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.receiveText.Location = new System.Drawing.Point(10, 56);
+            this.receiveText.Location = new System.Drawing.Point(10, 63);
             this.receiveText.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.receiveText.Multiline = true;
             this.receiveText.Name = "receiveText";
             this.receiveText.ReadOnly = true;
             this.receiveText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.receiveText.Size = new System.Drawing.Size(389, 217);
+            this.receiveText.Size = new System.Drawing.Size(365, 217);
             this.receiveText.TabIndex = 6;
+            // 
+            // chartBox
+            // 
+            chartArea3.Name = "ChartArea1";
+            this.chartBox.ChartAreas.Add(chartArea3);
+            this.tableLayoutPanel.SetColumnSpan(this.chartBox, 4);
+            this.chartBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chartBox.Location = new System.Drawing.Point(10, 56);
+            this.chartBox.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
+            this.chartBox.Name = "chartBox";
+            this.chartBox.Size = new System.Drawing.Size(365, 1);
+            this.chartBox.TabIndex = 7;
+            // 
+            // plotToolStripMenuItem
+            // 
+            this.plotToolStripMenuItem.Name = "plotToolStripMenuItem";
+            this.plotToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.plotToolStripMenuItem.Text = "Plot";
+            this.plotToolStripMenuItem.Click += new System.EventHandler(this.plotToolStripMenuItem_Click);
+            // 
+            // saveGraphToolStripMenuItem
+            // 
+            this.saveGraphToolStripMenuItem.Name = "saveGraphToolStripMenuItem";
+            this.saveGraphToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveGraphToolStripMenuItem.Text = "Save Graph";
+            this.saveGraphToolStripMenuItem.Click += new System.EventHandler(this.saveGraphToolStripMenuItem_Click);
             // 
             // MonitorWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(409, 311);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(385, 318);
+            this.Controls.Add(this.tableLayoutPanel);
             this.Name = "MonitorWindow";
-            this.Text = "Form1";
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.Text = "Strawhat .Net";
+            this.tableLayoutPanel.ResumeLayout(false);
+            this.tableLayoutPanel.PerformLayout();
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartBox)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
         private System.Windows.Forms.MenuStrip menu;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem terminalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem plotToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ComboBox portBox;
         private System.Windows.Forms.ComboBox baudBox;
         private System.Windows.Forms.Button connectButton;
@@ -263,6 +306,9 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartBox;
+        private System.Windows.Forms.ToolStripMenuItem plotToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveGraphToolStripMenuItem;
     }
 }
 
