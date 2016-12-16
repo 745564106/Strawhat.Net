@@ -34,6 +34,12 @@ namespace Strawhat.net
             saveGraphToolStripMenuItem.Visible = false;
             count = 0;
 
+            trailBox.Items.Add("");
+            trailBox.Items.Add("LF");
+            trailBox.Items.Add("CR");
+            trailBox.Items.Add("CRLF");
+            trailBox.SelectedIndex = 0;
+
             //Initiate baud rate list
             List<int> baudRate = new List<int>(){ 9600, 19200, 115200, 384000, 250000, 1000000, 2000000 };
             baudBox.DataSource = baudRate;
@@ -175,11 +181,18 @@ namespace Strawhat.net
         private void sendButton_Click(object sender, EventArgs e)
         {
             String sendMessage = sendBox.Text;
+
             try
             {
                 if (serialPort.IsOpen)
                 {
-                    serialPort.Write(sendMessage);
+                    switch (trailBox.Text)
+                    {
+                        case "": serialPort.Write(sendMessage); break;
+                        case "CR": serialPort.Write(sendMessage + "\r"); break;
+                        case "LF": serialPort.Write(sendMessage + "\n"); break;
+                        case "CRLF": serialPort.Write(sendMessage + "\r\n"); break;
+                    }
                     sent.Add(sendMessage);
                     sent.ResetBindings();
                     sendBox.Text = "";
@@ -226,23 +239,28 @@ namespace Strawhat.net
                 receiveText.Height = 50;
                 chartBox.Visible = true;
                 chartBox.Enabled = true;
-                chartBox.Height = 300;
+                if (this.WindowState == FormWindowState.Maximized) { chartBox.Height = 500; }
+                else chartBox.Height = 300;
                 chartBox.Series.Add("Series1");
                 chartBox.Series["Series1"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
                 chartBox.Series["Series1"].BorderWidth = 3;
                 plotToolStripMenuItem.Checked = true;
                 saveGraphToolStripMenuItem.Enabled = true;
                 saveGraphToolStripMenuItem.Visible = true;
+                this.MinimumSize = new System.Drawing.Size(425, 489);
+                Console.WriteLine("Windows Size: {0},{1}", this.Width, this.Height);
             }
             else if (chartBox.Enabled)
             {
                 chartBox.Series.Clear();
+                this.MinimumSize = new System.Drawing.Size(425, 348);
                 receiveText.Height = 215;
                 chartBox.Visible = false;
                 chartBox.Enabled = false;
                 plotToolStripMenuItem.Checked = false;
                 saveGraphToolStripMenuItem.Enabled = false;
                 saveGraphToolStripMenuItem.Visible = false;
+                Console.WriteLine("Windows Size: {0},{1}", this.Width, this.Height);
             }
         }
 
@@ -259,6 +277,12 @@ namespace Strawhat.net
             {
 
             }
+        }
+
+        private void MonitorWindow_Resize(object sender, EventArgs e)
+        {
+            if(chartBox.Enabled && this.WindowState == FormWindowState.Maximized) chartBox.Height = 500;
+            else if(chartBox.Enabled && this.WindowState == FormWindowState.Normal) chartBox.Height = 300;
         }
     }
 }
