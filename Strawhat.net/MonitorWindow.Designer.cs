@@ -194,9 +194,9 @@
             this.portBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.portBox.FormattingEnabled = true;
             this.portBox.Location = new System.Drawing.Point(10, 28);
-            this.portBox.Margin = new System.Windows.Forms.Padding(10, 5, 5, 5);
+            this.portBox.Margin = new System.Windows.Forms.Padding(10, 5, 2, 5);
             this.portBox.Name = "portBox";
-            this.portBox.Size = new System.Drawing.Size(85, 21);
+            this.portBox.Size = new System.Drawing.Size(88, 21);
             this.portBox.TabIndex = 1;
             // 
             // baudBox
@@ -204,10 +204,10 @@
             this.baudBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.baudBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.baudBox.FormattingEnabled = true;
-            this.baudBox.Location = new System.Drawing.Point(105, 28);
-            this.baudBox.Margin = new System.Windows.Forms.Padding(5);
+            this.baudBox.Location = new System.Drawing.Point(102, 28);
+            this.baudBox.Margin = new System.Windows.Forms.Padding(2, 5, 5, 5);
             this.baudBox.Name = "baudBox";
-            this.baudBox.Size = new System.Drawing.Size(90, 21);
+            this.baudBox.Size = new System.Drawing.Size(93, 21);
             this.baudBox.TabIndex = 2;
             // 
             // connectButton
