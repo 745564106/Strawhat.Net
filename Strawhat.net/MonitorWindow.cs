@@ -23,16 +23,16 @@ namespace Strawhat.net
         BindingList<string> sent = new BindingList<string>();
         BindingSource sSource = new BindingSource();
 
-        int count;
-
         public MonitorWindow()
         {
             InitializeComponent();
             chartBox.Enabled = false;
             chartBox.Visible = false;
+            chartBox.Series.Add("Series1");
+            chartBox.Series["Series1"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            chartBox.Series["Series1"].BorderWidth = 3;
             saveGraphToolStripMenuItem.Enabled = false;
             saveGraphToolStripMenuItem.Visible = false;
-            count = 0;
 
             trailBox.Items.Add("");
             trailBox.Items.Add("LF");
@@ -116,6 +116,13 @@ namespace Strawhat.net
         private void watcherEventArrived(Object sender, EventArrivedEventArgs e)
         {
             ports_refresh();
+            if (!serialPort.IsOpen)
+            {
+                connectButton.Invoke(new MethodInvoker(delegate
+                {
+                    connectButton.Text = "Connect";
+                }));
+            }
             Console.WriteLine("Device change event");
         }
 
@@ -157,8 +164,19 @@ namespace Strawhat.net
                     if (chartBox.Enabled)
                     {
                         data = sp.ReadLine();
-                        string[] x = data.Split('\n');
-                        chartBox.Series["Series1"].Points.AddXY(count++, x[0]);
+                        string[] y = data.Split('\n');
+                        double check;
+                        if(double.TryParse(y[0], out check))
+                        {
+                            if (chartBox.InvokeRequired)
+                            {
+                                chartBox.Invoke(new MethodInvoker(delegate
+                                {
+                                    chartBox.Series["Series1"].Points.AddY(y[0]);
+                                }));
+                            }
+                        }
+                        
                     } else data = sp.ReadExisting();
 
                     if (receiveText.InvokeRequired)
@@ -166,6 +184,7 @@ namespace Strawhat.net
                         receiveText.BeginInvoke(new MethodInvoker(delegate
                         {
                             receiveText.AppendText(data);
+                            if (chartBox.Enabled) receiveText.AppendText(Environment.NewLine);
                             receiveText.ScrollToCaret();
                         }));
                     }
@@ -241,9 +260,6 @@ namespace Strawhat.net
                 chartBox.Enabled = true;
                 if (this.WindowState == FormWindowState.Maximized) { chartBox.Height = 500; }
                 else chartBox.Height = 300;
-                chartBox.Series.Add("Series1");
-                chartBox.Series["Series1"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-                chartBox.Series["Series1"].BorderWidth = 3;
                 plotToolStripMenuItem.Checked = true;
                 saveGraphToolStripMenuItem.Enabled = true;
                 saveGraphToolStripMenuItem.Visible = true;
@@ -283,6 +299,11 @@ namespace Strawhat.net
         {
             if(chartBox.Enabled && this.WindowState == FormWindowState.Maximized) chartBox.Height = 500;
             else if(chartBox.Enabled && this.WindowState == FormWindowState.Normal) chartBox.Height = 300;
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

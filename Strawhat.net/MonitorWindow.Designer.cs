@@ -35,13 +35,13 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveGraphToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.terminalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.plotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.portBox = new System.Windows.Forms.ComboBox();
             this.baudBox = new System.Windows.Forms.ComboBox();
@@ -51,6 +51,7 @@
             this.receiveText = new System.Windows.Forms.TextBox();
             this.chartBox = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.trailBox = new System.Windows.Forms.ComboBox();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tableLayoutPanel.SuspendLayout();
             this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartBox)).BeginInit();
@@ -61,11 +62,11 @@
             this.tableLayoutPanel.AutoSize = true;
             this.tableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel.ColumnCount = 5;
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
             this.tableLayoutPanel.Controls.Add(this.menu, 0, 0);
             this.tableLayoutPanel.Controls.Add(this.portBox, 0, 1);
             this.tableLayoutPanel.Controls.Add(this.baudBox, 1, 1);
@@ -119,27 +120,23 @@
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exportToolStripMenuItem.Text = "Export Text";
             this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
             // 
             // saveGraphToolStripMenuItem
             // 
             this.saveGraphToolStripMenuItem.Name = "saveGraphToolStripMenuItem";
-            this.saveGraphToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.saveGraphToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveGraphToolStripMenuItem.Text = "Save Graph";
             this.saveGraphToolStripMenuItem.Click += new System.EventHandler(this.saveGraphToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(130, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // terminalToolStripMenuItem
             // 
@@ -154,7 +151,7 @@
             // 
             this.clearToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
-            this.clearToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
+            this.clearToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.clearToolStripMenuItem.Text = "Clear";
             this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
             // 
@@ -169,22 +166,29 @@
             // plotToolStripMenuItem
             // 
             this.plotToolStripMenuItem.Name = "plotToolStripMenuItem";
-            this.plotToolStripMenuItem.Size = new System.Drawing.Size(95, 22);
+            this.plotToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.plotToolStripMenuItem.Text = "Plot";
             this.plotToolStripMenuItem.Click += new System.EventHandler(this.plotToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.helpToolStripMenuItem1,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 19);
             this.helpToolStripMenuItem.Text = "Help";
             // 
+            // helpToolStripMenuItem1
+            // 
+            this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
+            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.helpToolStripMenuItem1.Text = "Manual";
+            // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -196,7 +200,7 @@
             this.portBox.Location = new System.Drawing.Point(10, 28);
             this.portBox.Margin = new System.Windows.Forms.Padding(10, 5, 2, 5);
             this.portBox.Name = "portBox";
-            this.portBox.Size = new System.Drawing.Size(88, 21);
+            this.portBox.Size = new System.Drawing.Size(73, 21);
             this.portBox.TabIndex = 1;
             // 
             // baudBox
@@ -204,7 +208,7 @@
             this.baudBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.baudBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.baudBox.FormattingEnabled = true;
-            this.baudBox.Location = new System.Drawing.Point(102, 28);
+            this.baudBox.Location = new System.Drawing.Point(87, 28);
             this.baudBox.Margin = new System.Windows.Forms.Padding(2, 5, 5, 5);
             this.baudBox.Name = "baudBox";
             this.baudBox.Size = new System.Drawing.Size(93, 21);
@@ -213,10 +217,10 @@
             // connectButton
             // 
             this.connectButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.connectButton.Location = new System.Drawing.Point(336, 26);
+            this.connectButton.Location = new System.Drawing.Point(326, 26);
             this.connectButton.Margin = new System.Windows.Forms.Padding(2, 3, 10, 3);
             this.connectButton.Name = "connectButton";
-            this.connectButton.Size = new System.Drawing.Size(63, 24);
+            this.connectButton.Size = new System.Drawing.Size(73, 24);
             this.connectButton.TabIndex = 3;
             this.connectButton.Text = "Connect";
             this.connectButton.UseVisualStyleBackColor = true;
@@ -230,16 +234,16 @@
             this.sendBox.Location = new System.Drawing.Point(10, 288);
             this.sendBox.Margin = new System.Windows.Forms.Padding(10, 5, 2, 3);
             this.sendBox.Name = "sendBox";
-            this.sendBox.Size = new System.Drawing.Size(262, 21);
+            this.sendBox.Size = new System.Drawing.Size(252, 21);
             this.sendBox.TabIndex = 4;
             // 
             // sendButton
             // 
             this.sendButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sendButton.Location = new System.Drawing.Point(336, 286);
+            this.sendButton.Location = new System.Drawing.Point(326, 286);
             this.sendButton.Margin = new System.Windows.Forms.Padding(2, 3, 10, 3);
             this.sendButton.Name = "sendButton";
-            this.sendButton.Size = new System.Drawing.Size(63, 24);
+            this.sendButton.Size = new System.Drawing.Size(73, 24);
             this.sendButton.TabIndex = 5;
             this.sendButton.Text = "Send";
             this.sendButton.UseVisualStyleBackColor = true;
@@ -261,6 +265,8 @@
             // 
             // chartBox
             // 
+            this.chartBox.BorderlineColor = System.Drawing.Color.Gray;
+            this.chartBox.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
             chartArea1.Name = "ChartArea1";
             this.chartBox.ChartAreas.Add(chartArea1);
             this.tableLayoutPanel.SetColumnSpan(this.chartBox, 5);
@@ -276,11 +282,17 @@
             this.trailBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trailBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.trailBox.FormattingEnabled = true;
-            this.trailBox.Location = new System.Drawing.Point(276, 288);
+            this.trailBox.Location = new System.Drawing.Point(266, 288);
             this.trailBox.Margin = new System.Windows.Forms.Padding(2, 5, 2, 3);
             this.trailBox.Name = "trailBox";
             this.trailBox.Size = new System.Drawing.Size(56, 21);
             this.trailBox.TabIndex = 8;
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // MonitorWindow
             // 
@@ -323,11 +335,12 @@
         private System.Windows.Forms.TextBox receiveText;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem plotToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveGraphToolStripMenuItem;
         private System.Windows.Forms.ComboBox trailBox;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartBox;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
 
